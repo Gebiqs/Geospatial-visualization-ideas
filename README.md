@@ -20,7 +20,7 @@ plt.savefig("Kujawsko_pomorskie.svg", format="svg")
 
 This generates following output:
 
-![alt text](https://github.com/Gebiqs/Geospatial-visualization-ideas/blob/main/Kujawsko_pomorskie.svg)
+![alt text](https://github.com/Gebiqs/Geospatial-visualization-ideas/blob/main/Kujawsko-%20Pomorskie%20-%20borders.png)
 
 What we did here is:
 1. Opened an shp file. Geopandas reads the files just like regular pandas dataframes. The file contains all the local communes in Poland.
@@ -31,3 +31,28 @@ What we did here is:
 
 
 More shapefiles you can get on the eurostat website: https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/countries
+
+
+## Visualizing your data:
+
+Data that you acquire on the internet usually can be easily visualized in geopandas with just one or two joins. In cases when you get data with string names of the communes, it's just a matter of  using .dbf files that come along with shapefile as a dictionary to map names to codes. Once you acquire codes for each commune, perform next join to map the data to the shapefile. We can do this using following code: 
+
+```
+
+df = pd.read_excel(".../wyniki_SOM_cluster_new_table.xlsx", index_col=False)
+df['terytorium'] = df['teryt'].apply(lambda x: (str("0"+str(x))))                             #add a zero at the beginning of a string to match the format
+merged1 = map1.merge(df,how="right", right_on="terytorium", left_on="JPT_KOD_JE")             #performing a join between data and a shapefile
+colors = ["#F8F1B8", "#FDBF71", "#F67B4A", "#DA372A", "#9D0C1B"]                              #creating a custom colormap
+cmap = clr.ListedColormap(colors)
+merged = gpd.GeoDataFrame(merged1)                                                            #making a geopandas dataframe from a pandas dataframe
+fig = plt.figure(dpi=500)
+merged.plot(column="SOM", figsize=(20,20),cmap=cmap, legend=True, edgecolor="Black" , linewidth=.4)
+plt.xticks(ticks=[])
+plt.yticks(ticks=[])
+plt.savefig("Kujawsko_pomorskie.svg", format="svg")
+
+```
+Output:
+
+![alt text](https://github.com/Gebiqs/Geospatial-visualization-ideas/blob/main/Kujawsko_pomorskie.png)
+
