@@ -58,4 +58,5 @@ Output:
 
 ![alt text](https://github.com/Gebiqs/Geospatial-visualization-ideas/blob/main/Kujawsko_pomorskie.png)
 
-![alt text](https://github.com/Gebiqs/Geospatial-visualization-ideas/blob/main/Crime_rate.html)
+
+More on folium later
