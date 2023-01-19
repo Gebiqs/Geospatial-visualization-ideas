@@ -33,6 +33,8 @@ What we did here is:
 More shapefiles you can get on the eurostat website: https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/countries
 
 
+
+
 ## Visualizing your data:
 
 Data that you acquire on the internet usually can be easily visualized in geopandas with just one or two joins. In cases when you get data with string names of the communes, it's just a matter of  using .dbf files that come along with shapefile as a dictionary to map names to codes. Once you acquire codes for each commune, perform next join to map the data to the shapefile. We can do this using following code: 
@@ -56,3 +58,4 @@ Output:
 
 ![alt text](https://github.com/Gebiqs/Geospatial-visualization-ideas/blob/main/Kujawsko_pomorskie.png)
 
+![alt text](https://github.com/Gebiqs/Geospatial-visualization-ideas/blob/main/Crime_rate.html)
